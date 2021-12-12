@@ -1,4 +1,4 @@
-import service from "./service"
+import service, {findManyToOneRecords} from "./service"
 import {schema} from "./schema";
 const { useState, useEffect } = React;
 const {Link, useParams, useHistory} = window.ReactRouterDOM;
@@ -14,6 +14,9 @@ const RecordEditorScreen = () => {
     const removeRecord = () =>
         service.removeRecord(table.name, id)
             .then(() => history.goBack())
+
+    console.log(tableName)
+    console.log(table.relations.references)
 
     useEffect(() => {
         if(id !== "new") {
@@ -43,9 +46,13 @@ const RecordEditorScreen = () => {
         }
     }
 
+
     return (
         <div className="pt-2">
             <h2>
+                <Link to="/" className="btn btn-warning me-2">
+                    Home
+                </Link>
                 <button onClick={() => history.goBack()}
                         className="btn btn-warning me-2">
                     <i className="me-2 fas fa-chevron-left"></i>
@@ -76,11 +83,18 @@ const RecordEditorScreen = () => {
                     <div className="list-group">
                         {
                             table.relations.map((relation, ndx) =>
+                                (table.name=="playlists" & relation.name=="users") ?
+                            (
                                 <Link className="list-group-item" key={ndx}
-                                      to={`/${table.name}/${record.id}/${relation.references}/list`}>
-                                    {relation.label}
-                                    <i className="fas fa-chevron-right float-end"></i>
-                                </Link>
+                            to={`/users/${record.userId}/edit`}>
+                            {relation.label}
+                            <i className="fas fa-chevron-right float-end"></i>
+                            </Link>) :
+                                    (<Link className="list-group-item" key={ndx}
+                                           to={`/${table.name}/${record.id}/${relation.references}/list`}>
+                                        {relation.label}
+                                        <i className="fas fa-chevron-right float-end"></i>
+                                    </Link>)
                             )
                         }
                     </div>

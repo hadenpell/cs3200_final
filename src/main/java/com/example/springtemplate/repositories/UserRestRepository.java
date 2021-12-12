@@ -15,4 +15,10 @@ public interface UserRestRepository
   @Query(value = "SELECT * FROM users WHERE id=:userId",
       nativeQuery = true)
   public User findUserById(@Param("userId") Integer id);
+
+  @Query(value = "SELECT * FROM users JOIN playlists ON users.id=playlists.user_id"
+      + " WHERE id=:playlistId",
+      nativeQuery = true)
+  public User findUserByPlaylistId(@Param("playlistId") Integer id);
+
 }

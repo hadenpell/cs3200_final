@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +21,9 @@ public class Playlist {
   private Integer id;
   private String name;
   private Date createDate;
+
+  @ManyToOne(targetEntity = User.class)
+  @JoinColumn(name = "user_id")
   private Integer userId;
 
   @OneToMany(mappedBy = "playlistId", targetEntity = Added.class)

@@ -20,7 +20,6 @@ const OneToManyListScreen = () => {
             .then(records => setRecords(records));
 
     const createOneToMany = () =>
-        //service.createOneToMany(oneTableName, id, manyTableName);
         history.push(`/${manyTableName}/new/edit`);
 
     useEffect(findOneToMany, []);
@@ -28,6 +27,9 @@ const OneToManyListScreen = () => {
     return (
         <div className="pt-2">
             <h2 className="mb-3">
+                <Link to="/" className="btn btn-warning me-2">
+                    Home
+                </Link>
                 <button onClick={() => history.goBack()}
                         className="btn btn-warning me-2">
                     <i className="me-2 fas fa-chevron-left"></i>

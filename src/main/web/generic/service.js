@@ -12,6 +12,11 @@ export const findOneToManyRecords = (oneTable, id, manyTable) =>
     fetch(`${URL}/${oneTable}/${id}/${manyTable}`)
         .then(response => response.json());
 
+export const findManyToOneRecords = (oneTable, id, manyTable) =>
+    //ex: playlists/playlistId/users
+    fetch(`${URL}/${manyTable}/${id}/${oneTable}`)
+        .then(response => response.json());
+
 export const removeRecord = (table, id) =>
     fetch(`${URL}/${table}/${id}`, {
         method: "DELETE"

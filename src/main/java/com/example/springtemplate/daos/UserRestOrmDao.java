@@ -25,8 +25,14 @@ public class UserRestOrmDao {
   @GetMapping("/api/users/{userId}")
   public User findUserById(
       @PathVariable("userId") Integer id) {
-    System.out.println(userRepository.findUserById(id).getDateOfBirth());
+
     return userRepository.findUserById(id);
+  }
+
+  @GetMapping("/api/playlists/{playlistId}/users")
+  public User findUserByPlaylistId(
+      @PathVariable("playlistId") Integer id) {
+    return userRepository.findUserByPlaylistId(id);
   }
 
   @PutMapping("/api/users/{userId}")

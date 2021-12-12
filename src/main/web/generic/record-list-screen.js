@@ -24,7 +24,7 @@ const RecordListScreen = () => {
             <h2 className="mb-3">
                 <Link to="/" className="btn btn-warning me-2">
                     <i className="fas fa-chevron-left me-2"></i>
-                    Tables
+                    Home
                 </Link>
                 {table.label} List
 

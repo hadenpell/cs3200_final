@@ -33,7 +33,8 @@ export const schema = {
                 {name: 'createDate', label: 'Create Date'}
             ],
             relations: [
-                {name: 'songs', label: 'Songs', references: 'songs'}
+                {name: 'songs', label: 'Songs', references: 'songs'},
+                {name: 'users', label: 'Edit User', references: 'users'}
             ],
             list: {
                 id: { show: false },
